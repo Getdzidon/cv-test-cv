@@ -28,7 +28,7 @@ jobs:
     - name: Build, tag, and push Docker image to Amazon ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: test.cv # Create secret in your Github
+        ECR_REPOSITORY: dee.cv # Create secret in your Github
         IMAGE_TAG: ${{ github.sha }}
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
@@ -45,7 +45,7 @@ jobs:
 
     - name: Update Deployment Image
       run: |
-        sed -i "s|IMAGE_TAG_PLACEHOLDER|471112610438.dkr.ecr.eu-central-1.amazonaws.com/test-cv:${{ github.sha }}|g" ./deployment.yml
+        sed -i "s|IMAGE_TAG_PLACEHOLDER|471112610438.dkr.ecr.eu-central-1.amazonaws.com/dee-cv:${{ github.sha }}|g" ./deployment.yml
 
 
     - name: Deploy to EKS
